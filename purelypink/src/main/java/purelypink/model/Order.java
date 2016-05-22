@@ -16,10 +16,10 @@ public class Order implements Serializable
 {
 	@Id
     @GeneratedValue(strategy=GenerationType.AUTO)
-    private int customerOrderId;
+    private int orderId;
 
     @OneToOne
-    @JoinColumn(name = "cart_id")
+    @JoinColumn(name = "cartId")
     private Cart cart;
 
     @OneToOne
@@ -27,15 +27,16 @@ public class Order implements Serializable
     private UserDetails userdetails;
 
     
-    public int getCustomerOrderId() {
-        return customerOrderId;
-    }
+    
+    public int getOrderId() {
+		return orderId;
+	}
 
-    public void setCustomerOrderId(int customerOrderId) {
-        this.customerOrderId = customerOrderId;
-    }
+	public void setOrderId(int orderId) {
+		this.orderId = orderId;
+	}
 
-    public Cart getCart() {
+	public Cart getCart() {
         return cart;
     }
 

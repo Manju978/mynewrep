@@ -86,21 +86,36 @@
                      <div class="col-sm-6">
       <form  class="form-" role="form" action="submission">
   <div class="form-group">
-    <label for="uname">Address Line 1:</label>
-    <input type="text" class="form-control" id="uname">
+    <label for="user_Id">UserId:</label>
+    <input type="text" class="form-control" id="user_Id">
   </div>
   <div class="form-group">
-    <label for="phone">Address Line 2:</label>
-    <input type="text" class="form-control" id="issue">
+    <label for="user_Name"> user_Name:</label>
+    <input type="text" class="form-control" id="user_Name">
   </div>
    <div class="form-group">
-    <label for="email">Pin Code:</label>
-    <input type="text" class="form-control" id="email">
+    <label for="state">State:</label>
+    <input type="text" class="form-control" id="state">
   </div>
   <div class="form-group">
-    <label for="pwd">Number : </label>
-    <input type="text" class="form-control" id="num">
+    <label for="city">city:</label>
+    <input type="text" class="form-control" id="city">
   </div>
+<div class="form-group">
+    <label for="area">area:</label>
+    <input type="text" class="form-control" id="area">
+  </div>
+
+<div class="form-group">
+    <label for="zip">zip:</label>
+    <input type="text" class="form-control" id="zip">
+  </div>
+
+<div class="form-group">
+    <label for="street">street:</label>
+    <input type="text" class="form-control" id="street">
+  </div>
+
  <!-- <button type="submit" class="btn btn-default">Place the Order</button>
 </form>-->
 <a href="${flowExecutionUrl}&amp;_eventId=submit1" class="btn btn-info" role="button">Complete the order</a>

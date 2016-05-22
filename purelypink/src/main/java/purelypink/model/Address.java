@@ -1,5 +1,7 @@
 package purelypink.model;
 
+import javax.persistence.OneToOne;
+
 public class Address {
 	
 	private String state;
@@ -7,7 +9,16 @@ public class Address {
 	private String area;
 	private String zip;
 	private String street;
-	
+	@OneToOne
+    private UserDetails userDetails;
+
+
+	public UserDetails getUserDetails() {
+		return userDetails;
+	}
+	public void setUserDetails(UserDetails userDetails) {
+		this.userDetails = userDetails;
+	}
 	public String getState() {
 		return state;
 	}

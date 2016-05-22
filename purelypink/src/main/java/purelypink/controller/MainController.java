@@ -2,6 +2,8 @@ package purelypink.controller;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,7 +16,9 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.google.gson.Gson;
 
+import purelypink.model.Item;
 import purelypink.model.ProductModel;
+import purelypink.service.ItemService;
 import purelypink.service.ProductService;
 
 @Controller
@@ -22,6 +26,7 @@ public class MainController
 {
 
 	ProductService ps;
+	ItemService is;
 		
 	@Autowired
 	public MainController(ProductService ps) {
@@ -83,6 +88,7 @@ public class MainController
 		return "productdetails";
 
 	}
+	
 //	@RequestMapping("/shoppingcart")
 //	public String hello6()
 //	{
@@ -98,4 +104,5 @@ public class MainController
 //	{
 //		return "submission";
 //	}
+	
 }

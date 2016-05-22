@@ -19,7 +19,7 @@ public class Item {
 
 	 @Id
 	    @GeneratedValue
-	    private int cartItemId;
+	    private int itemId;
 
 	    @ManyToOne(targetEntity=Cart.class)
 	    @JoinColumn(name = "cartId")
@@ -27,22 +27,22 @@ public class Item {
 	    private Cart cart;
 
 	    @ManyToOne
-	    @JoinColumn(name = "productId")
+	    @JoinColumn(name = "pdctID")
 	    private ProductModel product;
 
 	    private int quantity;
 	    private double totalPrice;
 
 
-	    public int getCartItemId() {
-	        return cartItemId;
-	    }
+	    public int getItemId() {
+			return itemId;
+		}
 
-	    public void setCartItemId(int cartItemId) {
-	        this.cartItemId = cartItemId;
-	    }
+		public void setItemId(int itemId) {
+			this.itemId = itemId;
+		}
 
-	    public Cart getCart() {
+		public Cart getCart() {
 	        return cart;
 	    }
 

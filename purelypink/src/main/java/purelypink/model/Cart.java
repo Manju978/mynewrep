@@ -31,7 +31,7 @@ public class Cart implements Serializable
     private List<Item> items;
 
     @OneToOne
-    @JoinColumn(name = "customerId")
+    @JoinColumn(name = "user_Id")
     
     private UserDetails userDetails;
 
