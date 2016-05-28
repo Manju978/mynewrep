@@ -29,6 +29,18 @@
       $scope.dress = <%=request.getAttribute("productList")%>
     });    
     </script>
+    <script>
+
+    $(document).ready(function(){
+        var searchCondition = '${searchCondition}';
+
+        $('.table').DataTable({
+            "lengthMenu": [[1,2,3,5,10, -1], [1,2,3,5,10, "All"]],
+            "oSearch" : {"sSearch": searchCondition}
+        });
+    });
+</script>
+    
 </head>
 
 <body>
@@ -104,73 +116,36 @@
       </div>      
     </div>
   </form>
-  <table class="table table-bordered table-striped">
-<thead>
-      <tr>
-        <td>
-          <a href="#" ng-click="sortType = 'id'; sortReverse = !sortReverse">
-            PdctID
-            <span ng-show="sortType == 'id' && !sortReverse" class="glyphicon glyphicon-arrow-up"></span>
-            <span ng-show="sortType == 'id' && sortReverse" class="glyphicon glyphicon-arrow-down"></span>         
-          </a>
-        </td>
-        <td>
-          <a href="#" ng-click="sortType = 'name'; sortReverse = !sortReverse">
-          Category
-            <span ng-show="sortType == 'name' && !sortReverse" class="glyphicon glyphicon-arrow-down"></span>
-            <span ng-show="sortType == 'name' && sortReverse" class="glyphicon glyphicon-arrow-up"></span>
-          </a>
-        </td>
-        <td>
-          <a href="#" ng-click="sortType = 'brand'; sortReverse = !sortReverse">
-         Brand
-            <span ng-show="sortType == 'brand' && !sortReverse" class="glyphicon glyphicon-arrow-down"></span>
-            <span ng-show="sortType == 'brand' && sortReverse" class="glyphicon glyphicon-arrow-up"></span>
-          </a>
-        </td>
-         <td>
-    <a href="#" ng-click="sortType = 'price'; sortReverse = !sortReverse">
-  
-         Price
-            <span ng-show="sortType == 'price' && !sortReverse" class="glyphicon glyphicon-arrow-down"></span>
-            <span ng-show="sortType == 'price' && sortReverse" class="glyphicon glyphicon-arrow-up"></span>
-          </a>
-        </td>
- <td>
-    <a href="#" ng-click="sortType = 'more'; sortReverse = !sortReverse">
-  
-         MoreInfo
-            <span ng-show="sortType == 'more' && !sortReverse" class="glyphicon glyphicon-arrow-down"></span>
-            <span ng-show="sortType == 'more' && sortReverse" class="glyphicon glyphicon-arrow-up"></span>
-          </a>
-        </td>
+  <div class="container-wrapper">
+    <div class="container">
+        <div class="page-header">
+            <h1>All Products</h1>
 
+            <p class="lead">Checkout all the awesome products available now!</p>
+        </div>
 
-      </tr>
-           </tr>
-      
-    </thead> 
-    <tbody>
-   
-      <tr ng-repeat="dres in dress | orderBy:sortType:sortReverse | filter:searchPink">
-        <td>{{dres.pdctID}}</td>
-        <td>{{dres.category}}</td>
-        <td>{{dres.brand}}</td>
-       <td>{{dres.price}}</td>
-       <td>
-        <form action="productdetails">
-      	<input type="hidden" value={{dres.pdctID}} name="pdctID"/>
-        <input type="hidden" value={{dres.category}} name="category"/>
-        <input type="hidden" value={{dres.brand}} name="brand"/>
-        <input type="hidden" value={{dres.price}} name="price"/>
-        <button type="submit" class="btn" style="margin: 0px;width:100px;  text-align: center; font-size: 015x; border-radius: 0px;">
-        More &nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-expand"></span>
-        </button>
-      	</form>
-       </td>
-      </tr>
-    </tbody>
-  </table>  
+        <table class="table table-striped table-hover">
+            <thead>
+                <tr class="bg-success">
+                    <th>Photo Thumb</th>
+                    <th>Product Name</th>
+                    <th>Category</th>
+                    <th>Condition</th>
+                    <th>Price</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <c:forEach items="${products}" var="product">
+                <tr>
+                    <td><img src="<c:url value="/resources/images/${product.productId}.png" />" alt="image" style="width:100%"/></td>
+                    <td>${product.productName}</td>
+                    <td>${product.productCategory}</td>
+                    <td>${product.productCondition}</td>
+                    <td>${product.productPrice} USD </td>
+                    <td><a href="<spring:url value="/product/viewProduct/${product.productId}" />"><span class="glyphicon glyphicon-info-sign"></span></a></td>
+                </tr>
+            </c:forEach>
+        </table>
     </div>                
                 </div>
         <!-- /.container -->

@@ -16,9 +16,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.google.gson.Gson;
 
-import purelypink.model.Item;
-import purelypink.model.ProductModel;
-import purelypink.service.ItemService;
+import purelypink.model.Product;
 import purelypink.service.ProductService;
 
 @Controller
@@ -26,7 +24,7 @@ public class MainController
 {
 
 	ProductService ps;
-	ItemService is;
+	
 		
 	@Autowired
 	public MainController(ProductService ps) {
@@ -46,12 +44,12 @@ public class MainController
 		ModelAndView model=new ModelAndView("Login");	
 		return model;
 	}
-	@RequestMapping("/register")
-	public ModelAndView hello1()
-	{
-		ModelAndView model=new ModelAndView("Register");	
-		return model;
-	}
+//	@RequestMapping("/register")
+//	public ModelAndView hello1()
+//	{
+//		ModelAndView model=new ModelAndView("Register");	
+//		return model;
+//	}
 	@RequestMapping("/aboutus")
 	public ModelAndView hai()
 	{
@@ -70,17 +68,17 @@ public class MainController
 		
 		ModelAndView mv=new ModelAndView("products");
 		Gson gson=new Gson();
-		List<ProductModel> list = ps.getproductlist();
+		List<Product> list = ps.getProductList();
 		System.out.println("list : "+list);
 		String json=gson.toJson(list);
 		System.out.println("MY JSON"+json);
-		model.addAttribute("product", new ProductModel());
+		model.addAttribute("product", new Product());
 	    mv.addObject("productList", json.toString());
 		return mv;
 
 	}
 	@RequestMapping("/productdetails")
-	public String hello5(@ModelAttribute("product") ProductModel product,BindingResult res,ModelMap m)
+	public String hello5(@ModelAttribute("product") Product product,BindingResult res,ModelMap m)
 	{
 		ModelAndView model=new ModelAndView("productdetails");	
 		model.addObject("product", product);

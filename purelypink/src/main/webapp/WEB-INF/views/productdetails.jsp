@@ -1,4 +1,4 @@
-<%@page import="purelypink.model.ProductModel"%>
+<%@page import="purelypink.model.Product"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -89,31 +89,46 @@
         <div class="container">
                         <h3>Be Pretty in Pink</h3>                       
          </div>
-   <div class="col-sm-3">
-      <img src="${pdimg}/${product.pdctID}.jpg" class="img-responsive" style="width:100%" alt="Image">
-      <p>${product.pdctID}<span class="glyphicon glyphicon-hand-up"></span></p>
-    </div>
-                     <div class="col-sm-9">
-<div class="container" ng-app="sortApp" ng-controller="mainController">
-
-        
-      <h1>Product : ${product.category}</h1><br>
-       <h4>ID :  ${product.pdctID}</h4><br>
-        <h4> Price in INR : ${product.price}</h4><br>
-        <h4>Brand you have Chosen : ${product.brand}</h4><br>
-    </div>                
+     <div class="container" ng-app = "cartApp">
+            <div class="row">
+                <div class="col-md-5">
+                    <img src="<c:url value="/resources/images/${product.productId}.png" />" alt="image" style="width:100%"/>
+                </div>
+                <div class="col-md-5">
+                    <h3>${product.productName}</h3>
+                    <p>${product.productDescription}</p>
+                    <p><strong>Manufacturer</strong>: ${product.productManufacturer}</p>
+                    <p><strong>Category</strong>: ${product.productCategory}</p>
+                    <p><strong>Condition</strong>: ${product.productCondition}</p>
+                    <p>${product.productPrice} USD</p>
+                    <br/>
+                    <c:set var = "role" scope="page" value="${param.role}" />
+                    <c:set var = "url" scope="page" value="/product/productList" />
+                    <c:if test="${role='admin'}">
+                        <c:set var="url" scope="page" value="/admin/productInventory" />
+                    </c:if>
+                    <p ng-controller="cartCtrl">
+                        <a href="<c:url value = "${url}" />" class="btn btn-default">Back</a>
+                       <a href="#" class="btn btn-warning btn-large" ng-click="addToCart('${product.productId}')"><span class="glyphicon glyphicon-shopping-cart"></span> Order Now</a>                        
+                        <a href="<spring:url value="/cart" />" class="btn btn-default"><span class="glyphicon glyphicon-hand-right"></span> View Cart</a>
+                    </p>
                 </div>
             </div>
         </div>
-        <!-- /.container -->
+
+
+<!-- My -->
+<script src="<c:url value="/resources/js/controller.js?v3" /> "></script>
 
     <div>
     <form action="cartFlow">
-    <input type="hidden" value=${product.pdctID} name="pdctID"/>
-        <input type="hidden" value=${product.category} name="category"/>
-        <input type="hidden" value=${product.brand} name="brand"/>
-        <input type="hidden" value=${product.price} name="price"/>
-        
+    <input type="hidden" value=${product.productName} name="productName"/>
+        <input type="hidden" value=${product.productDescription} name="productDescription"/>
+        <input type="hidden" value=${product.productManufacturer} name="productManufacturer"/>
+        <input type="hidden" value=${product.productCategory} name="productCategory"/>
+          <input type="hidden" value=${product.productCondition} name="productCondition"/>
+          <input type="hidden" value=${product.productPrice} name="productPrice"/>     
+        <input type="text" name="quantity"/>
    <!--<a href="cartFlow">--><input type="submit" value="Add to Cart"><!--</a>-->
     </form>
     </div>

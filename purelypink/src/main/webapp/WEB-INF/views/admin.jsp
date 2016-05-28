@@ -40,53 +40,86 @@
 
 <form:form action="addnewproduct" commandName="product" modelAttribute="product" method="post" class="form-horizontal" role="form">
 <table>
-    <c:if test="${!empty product.pdctID}">
+    <c:if test="${!empty product.productId}">
     <tr style="padding: 10px;">
         <td>
 ID        </td>
         <td>
-            <form:input path="pdctID" readonly="true" size="8"  disabled="true" ng-model="pid" class="form-control"/>
-           	<form:hidden path="pdctID" />
+            <form:input path="productId" readonly="true" size="8"  disabled="true" ng-model="pid" class="form-control"/>
+           	<form:hidden path="productId" />
         </td> 
-         <td><form:errors path="pdctID" cssStyle="color: #c0392b;"/></td>
+         <td><form:errors path="productId" cssStyle="color: #c0392b;"/></td>
     </tr>
     </c:if>
     <tr>
         <td>
-            category
+            productName
         </td>
         <td>
-            <form:input path="category" ng-model="category" class="form-control"/>
+            <form:input path="productName" ng-model="productName" class="form-control"/>
         </td> 
-        <td><form:errors path="category" cssStyle="color: #c0392b;"/></td>
+        <td><form:errors path="productName" cssStyle="color: #c0392b;"/></td>
     </tr>
     <tr>
         <td>
-            Brand        </td>
+            productCategory        </td>
         <td>
-            <form:input path="brand" ng-model="brand"  class="form-control"/>
+            <form:input path="productCategory" ng-model="productCategory"  class="form-control"/>
         </td>
-        <td><form:errors path="brand" cssStyle="color: #c0392b;"/></td>
+        <td><form:errors path="productCategory" cssStyle="color: #c0392b;"/></td>
     </tr>
         <tr>
         <td>
-            Price
+            productDescription
         </td>
         <td>
          <td>
-            <form:input path="price" ng-model="price"  class="form-control"/>
+            <form:input path="productDescription" ng-model="productDescription"  class="form-control"/>
         </td>
-        <td><form:errors path="price" cssStyle="color: #c0392b;"/></td>
+        <td><form:errors path="productDescription" cssStyle="color: #c0392b;"/></td>
+        
+        </tr>
+        <tr>
+        <td>
+            productPrice
+        </td>
+        <td>
+         <td>
+            <form:input path="productPrice" ng-model="productPrice"  class="form-control"/>
+        </td>
+        <td><form:errors path="productPrice" cssStyle="color: #c0392b;"/></td>
+        
+        </tr>
+        <tr>
+        <td>
+            productCondition
+        </td>
+        <td>
+         <td>
+            <form:input path="productCondition" ng-model="productCondition"  class="form-control"/>
+        </td>
+        <td><form:errors path="productCondition" cssStyle="color: #c0392b;"/></td>
+        
+        </tr>
+      <tr>
+        <td>
+            productStatus
+        </td>
+        <td>
+         <td>
+            <form:input path="productStatus" ng-model="productStatus"  class="form-control"/>
+        </td>
+        <td><form:errors path="productStatus" cssStyle="color: #c0392b;"/></td>
         
         </tr>
         
            <tr>
         <td colspan="2">
-            <c:if test="${!empty product.category}">
+            <c:if test="${!empty product.productCategory}">
                 <button type="submit" class="btn" style="margin: 0px;width:100px; background-color: #00A2E8; color:white; text-align: center; font-size: 015x; border-radius: 0px;"
                     >Edit Product</button>
             </c:if>
-            <c:if test="${empty product.category}">
+            <c:if test="${empty product.productCategory}">
                 <button type="submit" class="btn" style="margin: 0px;width:100px; background-color: #00A2E8; color:white; text-align: center; font-size: 015x; border-radius: 0px;"
                  >Add Product</button>
             </c:if>
@@ -111,41 +144,83 @@ ID        </td>
 
     <thead>
       <tr>
+         <td>
+ID        </td>
         <td>
-          <a href="#" ng-click="sortType = 'pdctID'; sortReverse = !sortReverse">
-            Product ID 
-            <span ng-show="sortType == 'pdctID' && !sortReverse" class="glyphicon glyphicon-arrow-up"></span>
-            <span ng-show="sortType == 'pdctID' && sortReverse" class="glyphicon glyphicon-arrow-down"></span>
-          </a>
+            <form:input path="productId" readonly="true" size="8"  disabled="true" ng-model="pid" class="form-control"/>
+           	<form:hidden path="productId" />
+        </td> 
+         <td><form:errors path="productId" cssStyle="color: #c0392b;"/></td>
+    </tr>
+    </c:if>
+    <tr>
+        <td>
+            productName
         </td>
         <td>
-          <a href="#" ng-click="sortType = 'category'; sortReverse = !sortReverse">
-          Product Name
-            <span ng-show="sortType == 'category' && !sortReverse" class="glyphicon glyphicon-arrow-up"></span>
-            <span ng-show="sortType == 'category' && sortReverse" class="glyphicon glyphicon-arrow-down"></span>
-          </a>
+            <form:input path="productName" ng-model="productName" class="form-control"/>
+        </td> 
+        <td><form:errors path="productName" cssStyle="color: #c0392b;"/></td>
+    </tr>
+    <tr>
+        <td>
+            productCategory        </td>
+        <td>
+            <form:input path="productCategory" ng-model="productCategory"  class="form-control"/>
+        </td>
+        <td><form:errors path="productCategory" cssStyle="color: #c0392b;"/></td>
+    </tr>
+        <tr>
+        <td>
+            productDescription
         </td>
         <td>
-          <a href="#" ng-click="sortType = 'brand'; sortReverse = !sortReverse">
-         	Brand
-            <span ng-show="sortType == 'brand' && !sortReverse" class="glyphicon glyphicon-arrow-up"></span>
-            <span ng-show="sortType == 'brand' && sortReverse" class="glyphicon glyphicon-arrow-down"></span>
-          </a>
+         <td>
+            <form:input path="productDescription" ng-model="productDescription"  class="form-control"/>
+        </td>
+        <td><form:errors path="productDescription" cssStyle="color: #c0392b;"/></td>
+        
+        </tr>
+        <tr>
+        <td>
+            productPrice
         </td>
         <td>
-          <a href="#" ng-click="sortType = 'price'; sortReverse = !sortReverse">
-         	Price
-            <span ng-show="sortType == 'price' && !sortReverse" class="glyphicon glyphicon-arrow-up"></span>
-            <span ng-show="sortType == 'price' && sortReverse" class="glyphicon glyphicon-arrow-down"></span>
-          </a>
+         <td>
+            <form:input path="productPrice" ng-model="productPrice"  class="form-control"/>
         </td>
-            <td>
-          <a href="#">
+        <td><form:errors path="productPrice" cssStyle="color: #c0392b;"/></td>
+        
+        </tr>
+        <tr>
+        <td>
+            productCondition
+        </td>
+        <td>
+         <td>
+            <form:input path="productCondition" ng-model="productCondition"  class="form-control"/>
+        </td>
+        <td><form:errors path="productCondition" cssStyle="color: #c0392b;"/></td>
+        
+        </tr>
+      <tr>
+        <td>
+            productStatus
+        </td>
+        <td>
+         <td>
+            <form:input path="productStatus" ng-model="productStatus"  class="form-control"/>
+        </td>
+        <td><form:errors path="productStatus" cssStyle="color: #c0392b;"/></td>
+        
+        </tr>
+              <td>
+          <a href="/editproduct">
          	Edit
           </a>
         </td>
         <td>
-          <a href="#">
+          <a href="/deleteproduct">
          	Delete
           </a>
         </td>

@@ -1,39 +1,29 @@
 package purelypink.model;
 
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import javax.persistence.*;
 import java.io.Serializable;
 import java.util.List;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
-import javax.persistence.Table;
-
-import org.hibernate.annotations.IndexColumn;
 
 @Entity
-@Table(name="cartdetails")
-public class Cart implements Serializable
-{
+public class Cart implements Serializable{
 
-	@Id
+    private static final long serialVersionUID = 3940548625296145582L;
+
+    @Id
     @GeneratedValue
     private int cartId;
 
     @OneToMany(mappedBy = "cart", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    private List<Item> items;
+    private List<CartItem> cartItems;
 
     @OneToOne
-    @JoinColumn(name = "user_Id")
-    
-    private UserDetails userDetails;
+    @JoinColumn(name = "customerId")
+    @JsonIgnore
+    private Customer customer;
 
     private double grandTotal;
 
@@ -45,32 +35,23 @@ public class Cart implements Serializable
         this.cartId = cartId;
     }
 
-    public List<Item> getCartItems() {
-        return items;
+    public List<CartItem> getCartItems() {
+        return cartItems;
     }
 
-    public void setCartItems(List<Item> items) {
-        this.items = items;
+    public void setCartItems(List<CartItem> cartItems) {
+        this.cartItems = cartItems;
     }
 
-    
-    public List<Item> getItems() {
-		return items;
-	}
+    public Customer getCustomer() {
+        return customer;
+    }
 
-	public void setItems(List<Item> items) {
-		this.items = items;
-	}
+    public void setCustomer(Customer customer) {
+        this.customer = customer;
+    }
 
-	public UserDetails getUserDetails() {
-		return userDetails;
-	}
-
-	public void setUserDetails(UserDetails userDetails) {
-		this.userDetails = userDetails;
-	}
-
-	public double getGrandTotal() {
+    public double getGrandTotal() {
         return grandTotal;
     }
 
