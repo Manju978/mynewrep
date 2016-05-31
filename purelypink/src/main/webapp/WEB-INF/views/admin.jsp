@@ -152,7 +152,7 @@ ID        </td>
         </td> 
          <td><form:errors path="productId" cssStyle="color: #c0392b;"/></td>
     </tr>
-    </c:if>
+    
     <tr>
         <td>
             productName
